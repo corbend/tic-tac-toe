@@ -1,0 +1,56 @@
+<!-- NOTE: Please don not delete any of the comments below -->
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <title>TicTacToe</title>
+    <meta name="description" content="">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/lodash/lodash.min.js"></script>
+    <script src="services.js"></script>
+    <script src="vanilla_app.js"></script>
+</head>
+
+<body ng-app="ticTacToeGame">
+
+    <div class="wrapper">
+
+        <div class="start-screen panel end-panel">
+            <h1>TIC TAC TOE</h1>
+            <span class="line-block"><img src="styles/images/logo.png"/></span>
+            <span class="line-block"><h4>Введите размер игрового поля</h4></span>
+            <span class="line-block"><input id="inputSize" type="number" ng-model="game.settings.size"/></span>
+            <span class="line-block">
+                <button id="startButton" class="nice-button fixed-200">Start New Game</button>
+            </span>
+            <span class="line-block">
+                <button id="resumeButton" class="nice-button fixed-200">Resume Game</button>
+            </span>
+            <div id="invalidSettingsBlock" ng-if="game.invalid.settings">
+                <span id="empty-message-error" class="line-block error-label" ng-show="game.invalid.settings.is_empty">
+                    <h4>Вы не задали размер поля</h4>
+                </span>
+                <span id="incorrect-size-error" class="line-block error-label" ng-show="game.invalid.settings.incorrect_size">
+                    <h4>Вы не задали неверный размер. Должен быть больше {{game.winPoints}}</h4>
+                </span>
+            </div>
+        </div>
+        <div class="game-screen panel end-panel">
+            <button id="restartButton" class="nice-button">Restart Game</button>
+            <canvas id="game-field"></canvas>
+        </div>
+        <div class="end-screen panel end-panel">
+            <h1>Game Over</h1>
+            <span class="line-block">
+                <h2 id="winMessagePlace"></h2>
+            </span>
+            <span class="line-block">
+                <button id="continueButton" class="nice-button" ng-click="game.goToScreen('start')">Начать заново</button>
+            </span>
+        </div>
+    </body>
+</body>
+</html>
